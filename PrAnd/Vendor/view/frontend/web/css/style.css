@@ -1,0 +1,28 @@
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.vendorsData .vendorImages {
+    float: right;
+}
+
+.vendorsData .vendorImages__block {
+    display: inline-block;
+}
+
+.vendorsData .vendorImages__image {
+    width: 80px;
+}
+
+.vendorProductList {
+    margin-bottom: 15px;
+}
+
+.vendorProductList .vendorProductList__vendor {
+    margin-bottom: 5px;
+}
+
+.vendorProductList .vendorProductList__vendor > * {
+    margin-bottom: 0;
+}

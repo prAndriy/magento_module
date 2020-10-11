@@ -1,0 +1,29 @@
+<?php
+
+use Magento\Framework\View\Element\Template;
+use PrAnd\Vendor\Api\Data\VendorInterface;
+use PrAnd\Vendor\ViewModel\Product\VendorsData;
+
+/** @var VendorsData $vendorViewModel */
+/** @var Template $block */
+$vendorViewModel = $block->getData('vendorViewModel');
+$product = $block->getData('product');
+
+/** @var VendorInterface[] $vendors */
+$vendors = $vendorViewModel->getData($product) ?? [];
+
+if (!empty($vendors)) :
+    ?>
+    <div class="vendorProductList">
+        <?php foreach ($vendors as $vendor) : ?>
+            <div class="vendorProductList__vendor">
+                <p class="vendorProductList__vendorName">
+                    <?php echo $vendor->getName(); ?>:
+                </p>
+                <p class="vendorProductList__vendorDescription">
+                    <?php echo $vendor->getDescription(); ?>
+                </p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="PrAnd_Vendor::vendors" title="Vendors" translate="title" module="PrAnd_Vendor" action="vendors/index/index" sortOrder="30" parent="Magento_Catalog::catalog" resource="PrAnd_Vendor::vendors"/>
+    </menu>
+</config>

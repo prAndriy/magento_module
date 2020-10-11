@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                prand_vendor_admin_vendor_edit.prand_vendor_admin_vendor_edit_data_source
+            </item>
+            <item name="deps" xsi:type="string">
+                prand_vendor_admin_vendor_edit.prand_vendor_admin_vendor_edit_data_source
+            </item>
+        </item>
+
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="url" xsi:type="url" path="*/index/index"/>
+                <item name="class" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+            </item>
+
+            <item name="reset" xsi:type="array">
+                <item name="name" xsi:type="string">reset</item>
+                <item name="class" xsi:type="string">reset</item>
+                <item name="on_click" xsi:type="string">location.reload();</item>
+                <item name="label" xsi:type="string" translate="true">Reset</item>
+            </item>
+
+            <item name="delete" xsi:type="string">PrAnd\Vendor\Block\Adminhtml\Vendor\Edit\DeleteButton</item>
+
+            <item name="save" xsi:type="array">
+                <item name="name" xsi:type="string">save</item>
+                <item name="class" xsi:type="string">save primary</item>
+                <item name="data_attribute" xsi:type="array">
+                    <item name="mage-init" xsi:type="array">
+                        <item name="button" xsi:type="array">
+                            <item name="event" xsi:type="string">
+                                save
+                            </item>
+                        </item>
+                    </item>
+                    <item name="form-role" xsi:type="string">save</item>
+                </item>
+                <item name="label" xsi:type="string" translate="true">Save</item>
+            </item>
+        </item>
+    </argument>
+
+    <dataSource name="prand_vendor_admin_vendor_edit_data_source" component="Magento_Ui/js/form/provider">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">PrAnd\Vendor\Ui\Component\DataProvider\Form\VendorDataProvider</argument>
+            <argument name="name" xsi:type="string">prand_vendor_admin_vendor_edit_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+
+    <fieldset name="vendor">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true"/>
+            </item>
+        </argument>
+
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="name" formElement="input">
+            <settings>
+                <label translate="true">Name</label>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-string" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="description" template="ui/form/field" formElement="textarea">
+            <settings>
+                <label translate="true">Description</label>
+            </settings>
+        </field>
+
+        <field name="image" formElement="imageUploader">
+            <settings>
+                <label translate="true">Image</label>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <componentType>imageUploader</componentType>
+                <dataScope>image</dataScope>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>5242880</maxFileSize>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">*/*/upload</param>
+                        </uploaderConfig>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

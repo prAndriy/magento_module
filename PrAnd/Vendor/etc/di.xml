@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="PrAnd\Vendor\Api\Data\VendorInterface"
+                type="PrAnd\Vendor\Model\Vendor"/>
+
+    <preference for="PrAnd\Vendor\Api\VendorImageServiceInterface"
+                type="PrAnd\Vendor\Service\VendorImageService"/>
+
+    <preference for="PrAnd\Vendor\Api\VendorRepositoryInterface"
+                type="PrAnd\Vendor\Model\VendorRepository"/>
+
+    <preference for="PrAnd\Vendor\Api\Data\VendorCollectionInterface"
+                type="PrAnd\Vendor\Model\ResourceModel\Vendor\Collection"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="prand_vendor_admin_index_index_data_source" xsi:type="string">
+                    PrAnd\Vendor\Model\ResourceModel\Vendor\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

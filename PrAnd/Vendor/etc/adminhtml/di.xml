@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<!-- Plugins-->
+    <type name="PrAnd\Vendor\Model\Vendor">
+        <plugin name="prand_vendor_plugin_vendor_after_save"
+                type="PrAnd\Vendor\Plugin\Vendor\VendorAfterSavePlugin" sortOrder="10" />
+    </type>
+<!-- Plugins END-->
+
+<!-- Admin grid-->
+
+    <virtualType
+        name="PrAnd\Vendor\Ui\Component\Listing\Filters\FilterPool"
+        type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">
+                    Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter
+                </item>
+                <item name="fulltext" xsi:type="object">
+                    Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="PrAnd\Vendor\Ui\Component\DataProvider\VendorDataProvider">
+        <arguments>
+            <argument name="filterPool" xsi:type="object" shared="false">
+                PrAnd\Vendor\Ui\Component\Listing\Filters\FilterPool
+            </argument>
+        </arguments>
+    </type>
+<!-- Admin grid END -->
+
+</config>

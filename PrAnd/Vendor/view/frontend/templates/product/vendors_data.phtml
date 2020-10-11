@@ -1,0 +1,20 @@
+<?php
+
+use PrAnd\Vendor\Api\Data\VendorInterface;
+
+/** @var VendorInterface[] $vendors */
+/** @var Magento\Catalog\Block\Product\View $block */
+$viewModel = $block->getData('viewModel');
+$vendors = $viewModel->getData($block->getProduct());
+?>
+
+<div class="vendorImages">
+    <?php foreach ($vendors as $vendor) :
+            if (!empty($vendor->getImage())) :
+        ?>
+            <div class="vendorImages__block">
+                <img src="<?php echo $vendor->getImage(); ?>" alt="<?php echo $vendor->getName(); ?>" class="vendorImages__image img-fluid">
+            </div>
+    <?php endif; endforeach; ?>
+</div>
+

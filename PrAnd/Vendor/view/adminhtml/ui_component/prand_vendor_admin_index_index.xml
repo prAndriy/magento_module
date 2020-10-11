@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                prand_vendor_admin_index_index.prand_vendor_admin_index_index_data_source
+            </item>
+
+            <item name="deps" xsi:type="string">
+                prand_vendor_admin_index_index.prand_vendor_admin_index_index_data_source
+            </item>
+        </item>
+
+        <item name="spinner" xsi:type="string">prand_vendor_admin_index_index_listening_columns</item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="url" xsi:type="string">*/vendor/addnew</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="label" xsi:type="string" translate="true">Add new</item>
+            </item>
+        </item>
+    </argument>
+
+    <dataSource name="prand_vendor_admin_index_index_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+
+            <updateUrl path="mui/index/render"/>
+        </settings>
+
+        <dataProvider class="PrAnd\Vendor\Ui\Component\DataProvider\VendorDataProvider" name="prand_vendor_admin_index_index_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+
+        <bookmark name="bookmarks"/>
+
+        <columnsControls name="columns_controls"/>
+
+        <exportButton name="export_button"/>
+
+        <filterSearch name="fulltext"/>
+
+        <paging name="listing_paging"/>
+
+        <filters name="listing_filters"/>
+
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">
+                        prand_vendor_admin_index_index.prand_vendor_admin_index_index.prand_vendor_admin_index_index_listening_columns.ids
+                    </item>
+
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">
+                            Are you sure you want to delete selected product?
+                        </message>
+                        <title translate="true">Delete Selected Products</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete Selected Products</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+
+    <columns name="prand_vendor_admin_index_index_listening_columns">
+        <selectionsColumn name="ids" sortOrder="5">
+            <settings>
+                <indexField>entity_id</indexField>
+                <label translate="true">Select</label>
+            </settings>
+        </selectionsColumn>
+
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="name" sortOrder="15">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="description" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Description</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="image" component="Magento_Ui/js/grid/columns/thumbnail" class="PrAnd\Vendor\Ui\Component\Listing\Columns\Thumbnail" sortOrder="25">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Image</label>
+                <sortable>0</sortable>
+                <hasPreview>1</hasPreview>
+            </settings>
+        </column>
+
+        <column name="created_at" sortOrder="35">
+            <settings>
+                <filter>dateRange</filter>
+                <label translate="true">Created at</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="updated_at" sortOrder="35">
+            <settings>
+                <filter>dateRange</filter>
+                <label translate="true">Updated at</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions"
+                       class="PrAnd\Vendor\Ui\Component\Listing\Columns\VendorActions" sortOrder="500">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

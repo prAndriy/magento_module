@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="PrAnd_Vendor::css/style.css"/>
+    </head>
+    <body>
+
+        <referenceBlock name="category.products.list" template="PrAnd_Vendor::product/list/list.phtml">
+            <block class="Magento\Framework\View\Element\Template" name="category.products.list.vendors" as="prand.category.productvendorslist" template="PrAnd_Vendor::product/list/product_vendors_list.phtml">
+                <arguments>
+                    <argument name="vendorViewModel" xsi:type="object">
+                        \PrAnd\Vendor\ViewModel\Product\VendorsData
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+    </body>
+</page>
